@@ -26,8 +26,6 @@ const timeout = function (s) {
  
 
 /*
-//We can simply attach this to any parent element that data is passed in here
-//And we render the renderSpinner function inside if the controlRecipes bc when we render the recipe we want to see the spinner befor that
 const renderSpinner = function(parentEl) {
   const markup = `
       <div class="spinner">
@@ -46,8 +44,8 @@ const renderSpinner = function(parentEl) {
 export const controlRecipes = async function () {
   try {
 
-  // Get the curren id of thee meal from the hash in the Url
-  const id = window.location.hash.slice(1) //and using the slice method to get just the id without the hash #
+  
+  const id = window.location.hash.slice(1) 
   console.log(id);
 
   if(!id) return; 
@@ -57,7 +55,7 @@ export const controlRecipes = async function () {
 
   // 0) Update results view to mark selected search result
   resultsView.update(model.getSearchResultsPage()); 
-  // 3) each time that we display a recipe on the page we should update the entire bookmark view so then it can highlite the selected recipe 
+  // 3) 
   bookmarksView.update(model.state.bookmarks)
 
   // 1 - Loading the recipe from the url  !!!
@@ -82,9 +80,7 @@ const controlSearchResult = async function() {
     if (!query) return;
     
     // 2) Load search result 
-    await model.loadSearchResult(query) //just like loadRecipe(), here we don't need to store this at any variable bc it does't return anythig all it does is manipulate the state object in model.js
-    //Render results
-    // console.log(model.state.search.results);
+    await model.loadSearchResult(query) 
 
     // 3) Render results 
     // resultsView.render(model.state.search.results)
@@ -110,7 +106,7 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Update the recipe view
-  recipeView.update(model.state.recipe); // deferent between render and update is the update method will update only the text and attribut in the Dom And we, And wz want this update method to available in all the views bc we will use this in multiple situations in this project 
+  recipeView.update(model.state.recipe);
 };
 
 
@@ -124,7 +120,7 @@ console.log(model.state.recipe);
 
 //2) Render Recipe
 recipeView.update(model.state.recipe) 
-//3) Render Bookmarks // when ever we add a new bookMark we want to render all bookMark in the array 
+//3) Render Bookmarks 
 bookmarksView.render(model.state.bookmarks)
 
 };
@@ -140,11 +136,11 @@ const controlAddRecipe = async function (newRecipe) {
   //Show loading spinner   
   addRecipeView.renderSpinner(); 
 
-   await model.uploadRecipe(newRecipe); // this is an await promise so we have to await that promise coming from model
+   await model.uploadRecipe(newRecipe);
     console.log(model.state.recipe);
     // Upload the new recipe data to the api
     
-    recipeView.render(model.state.recipe) // render the recipe that we just added or aploaded to the api
+    recipeView.render(model.state.recipe) 
 
     //Success message 
     addRecipeView.renderMessage();
@@ -155,14 +151,14 @@ const controlAddRecipe = async function (newRecipe) {
     bookmarksView.render(model.state.bookmarks);
 
 
-     // This is allow us to change the URL without reloading the page 
+     
      window.history.pushState(null, '', `#${model.state.recipe.id}`);
     //  window.history.back()
 
     // Clode window form after 2.5 second
     setTimeout(function() {
       addRecipeView.toggleWindow()
-    }, MODAL_CLOSE_SEC * 1000) //milliseconds to seconds
+    }, MODAL_CLOSE_SEC * 1000) 
 
         
   }catch(err) {
