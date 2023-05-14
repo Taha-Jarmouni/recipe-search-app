@@ -184,6 +184,6 @@ const init = function() {
   paginationView.addHandlerClick(controlPagination)
   addRecipeView.addHandlerUpload(controlAddRecipe)
   newFeature()
-  alert('HACKED')
+  
 }
 init()
