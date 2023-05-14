@@ -183,7 +183,8 @@ const init = function() {
   searchView.addHandlerSearch(controlSearchResult)
   paginationView.addHandlerClick(controlPagination)
   addRecipeView.addHandlerUpload(controlAddRecipe)
-  newFeature()
   
+
+newFeature()
 }
 init()
